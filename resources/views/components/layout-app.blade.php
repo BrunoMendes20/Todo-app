@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ config(app . name) }}
+    <title>{{ config('app.name') }}
         @isset($pageTitle)
-            - {{ $pageTitle }}
+            {{ $pageTitle }}
         @endisset
     </title>
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
@@ -17,9 +17,10 @@
 </head>
 
 <body>
-    {{ $slot }}
-    <script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    {{ $slot ?? '' }}
 
+    <script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/messages.js') }}"></script>
 </body>
 
 </html>
