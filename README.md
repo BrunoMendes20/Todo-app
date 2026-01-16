@@ -109,7 +109,7 @@ app/
 
 🎯 Objetivo do Projeto
 
-•Este projeto foi desenvolvido com foco em aprendizado prático, reforçando:
+● Este projeto foi desenvolvido com foco em aprendizado prático, reforçando:
 
 ● Fundamentos de Laravel
 
