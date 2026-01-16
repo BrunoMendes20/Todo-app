@@ -4,7 +4,7 @@
             @csrf
 
             @if (session('error'))
-                <div class="alert alert-danger auto-close">
+                <div class="alert alert-danger fade show auto-close">
                     {{ session('error') }}
 
                 </div>
