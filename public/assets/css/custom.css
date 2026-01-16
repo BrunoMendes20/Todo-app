@@ -1,65 +1,99 @@
-:root {
+/* =========================
+   GLOBAL RESET & BASE STYLES
+========================= */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
+
+    /* Default font for the entire application */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* =========================
-   BACKGROUND GUEST (LOGIN)
+   BACKGROUND LAYOUTS
+   - Guest (Login / Register)
+   - Authenticated pages
 ========================= */
-.bg-guest {
+.bg-guest,
+.bg-auth {
     min-height: 100vh;
-    background-image: url("../images/bg-guest.png");
+
+    /* Background image behavior */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    /* Center content vertically and horizontally */
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
-/* Overlay sutil para melhorar contraste */
+/* Guest background image */
+.bg-guest {
+    background-image: url("../images/bg-guest.png");
+}
+
+/* Authenticated background image */
+.bg-auth {
+    background-image: url("../images/bg-auth.png");
+}
+
+/* =========================
+   GUEST BACKGROUND OVERLAY
+   Improves contrast and readability
+========================= */
 .bg-guest::before {
     content: "";
     position: fixed;
     inset: 0;
+
+    /* Soft gradient overlay */
     background: linear-gradient(135deg,
             rgba(230, 235, 245, 0.6),
             rgba(190, 200, 230, 0.6),
             rgba(150, 190, 210, 0.6));
+
     z-index: 0;
 }
 
-/* Garante que o conteúdo fique acima do overlay */
+/* Ensure content stays above the overlay */
 .bg-guest>* {
     position: relative;
     z-index: 1;
 }
 
 /* =========================
-   CONTAINER CENTRAL
+   MAIN CONTAINER
 ========================= */
 .container {
+    /* Ensures container is above background overlays */
     z-index: 2;
 }
 
 /* =========================
-   CARD (FORMULÁRIO)
+   CARD (FORM WRAPPER)
 ========================= */
 .card {
-    height: 800px;
     width: 500px;
+    height: 800px;
+
     border: none;
     border-radius: 16px;
+
+    /* Glassmorphism effect */
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.15);
 
+    /* Soft shadow for depth */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+
+    /* Entry animation */
     animation: fadeInUp 0.6s ease forwards;
+
+    /* Positioning adjustments */
     margin-left: auto;
     margin-bottom: auto;
 }
@@ -73,60 +107,408 @@
 }
 
 /* =========================
-   INPUTS
+   FORM INPUTS
 ========================= */
 .form-control {
-    border-radius: 10px;
     padding: 12px 14px;
+    border-radius: 10px;
 
     background-color: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(120, 140, 180, 0.25);
 
+    /* Smooth interaction feedback */
     transition: all 0.3s ease;
 }
 
+/* Placeholder text style */
 .form-control::placeholder {
     color: #9ca3af;
 }
 
+/* Input focus state */
 .form-control:focus {
+    background-color: #ffffff;
     border-color: #6b8cff;
+
+    /* Custom focus ring */
     box-shadow: 0 0 0 0.2rem rgba(107, 140, 255, 0.25);
-    background-color: #fff;
 }
 
 /* =========================
-   BOTÃO 
+   BUTTONS
 ========================= */
 .btn {
-    border-radius: 10px;
     padding: 12px;
+    border-radius: 10px;
+
     font-weight: 600;
     letter-spacing: 0.5px;
 
+    color: #ffffff;
+    border: none;
+
+    /* Gradient background */
     background: linear-gradient(135deg,
             #6b8cff,
             #5fa3d1);
 
-    color: #fff;
-    border: none;
-
+    /* Smooth hover animation */
     transition: all 0.3s ease;
 }
 
+/* Button hover effect */
 .btn:hover {
     box-shadow: 0 8px 20px rgba(95, 163, 209, 0.35);
 }
 
+/* =========================
+   LINKS & TEXT
+========================= */
 a {
     color: #12346e;
     text-decoration: none;
 }
 
+/* Paragraph text */
+p {
+    color: #0a0a0c;
+}
+
+/* Footer text */
 .footer {
     color: #0a0a0c;
 }
 
-p {
-    color: #0a0a0c;
+
+/* =========================
+   DROPDOWN MENU
+========================= */
+.dropdown-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    /* Ensures dropdown appears above other elements */
+    z-index: 1050;
+}
+
+/* Remove default arrow from dropdown toggle */
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    min-width: 120px;
+    padding: 0;
+
+    background-color: #2c2f3a;
+    border: none;
+    border-radius: 6px;
+}
+
+/* Dropdown item style */
+.dropdown-item {
+    padding: 10px 14px;
+    color: #ffffff;
+}
+
+/* =========================
+   TODO LIST CONTAINER
+========================= */
+.todo-container {
+    max-width: 480px;
+    width: 100%;
+    padding: 2.5rem;
+
+    /* Glassmorphism background */
+    background: rgba(18, 24, 38, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    /* Outer and inner shadow for depth */
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    color: #e5e7eb;
+}
+
+/* =========================
+   TODO HEADER
+========================= */
+header {
+    display: flex;
+    justify-content: center;
+
+    padding: 0 1rem 1rem;
+    border-bottom: 1px solid #cccccc;
+}
+
+/* =========================
+   TODO FORMS (CREATE / EDIT)
+========================= */
+.todo-form,
+.edit-form {
+    padding: 1rem;
+    border-bottom: 1px solid #cccccc;
+}
+
+/* Form section titles */
+.todo-form p,
+.edit-form p {
+    margin-bottom: 0.5rem;
+
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Input and button alignment */
+.todo-form-control {
+    display: flex;
+}
+
+.todo-form-control input {
+    margin-right: 1rem;
+}
+
+/* =========================
+   BUTTONS - GENERAL
+========================= */
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.3rem 0.6rem;
+    font-size: 1rem;
+
+    background-color: #fdfdfd;
+    cursor: pointer;
+
+    transition: 0.4s;
+}
+
+/* =========================
+   BUTTONS - ADD / CREATE
+========================= */
+.btn-plus {
+    color: #5fa3d1;
+    border: 2px solid #5fa3d1;
+}
+
+.btn-plus i {
+    color: #5fa3d1;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.btn-plus:hover {
+    background-color: #5fa3d1;
+}
+
+/* =========================
+   BUTTONS - DELETE
+========================= */
+.btn-delete-left {
+    color: #e03e25;
+    border: 2px solid #e03e25;
+}
+
+.btn-delete-left i {
+    color: #e03e25;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.btn-delete-left:hover {
+    background-color: #e03e25;
+    color: #ffffff;
+}
+
+/* =========================
+   BUTTONS - COMPLETE
+========================= */
+.btn-check-double {
+    color: #069c10;
+    border: 2px solid #069c10;
+}
+
+.btn-check-double i {
+    color: #069c10;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.btn-check-double:hover {
+    background-color: #069c10;
+    color: #ffffff;
+}
+
+/* =========================
+   BUTTONS - CANCEL
+========================= */
+.btn-cancel {
+    color: #e03e25;
+    border: 2px solid #cc4047;
+    margin-top: 10px;
+}
+
+.btn-cancel:hover {
+    background-color: #e03e25;
+    color: #ffffff;
+}
+
+/* Icon color on hover */
+.btn-plus:hover i,
+.btn-delete-left:hover i,
+.btn-check-double:hover i {
+    color: #ffffff;
+}
+
+/* =========================
+   TODO ITEM ACTIONS
+========================= */
+.finish-todo {
+    border: 2px solid #29b34b;
+}
+
+.finish-todo:hover {
+    background-color: #105e38;
+}
+
+.edit-todo {
+    border: 2px solid #175f93;
+}
+
+.edit-todo:hover {
+    background-color: #175f93;
+}
+
+.remove-todo {
+    border: 2px solid #e03e25;
+}
+
+.remove-todo:hover {
+    background-color: #e03e25;
+}
+
+.finish-todo:hover i,
+.edit-todo:hover i,
+.remove-todo:hover i {
+    color: #ffffff;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+/* =========================
+   UTILITIES
+========================= */
+.hide {
+    display: none !important;
+}
+
+/* Cancel edit button spacing */
+.btn-edit-cancel {
+    margin-top: 1rem;
+}
+
+/* =========================
+   TODO TOOLBAR
+========================= */
+.toolbar {
+    display: flex;
+    padding: 1rem;
+
+    border-bottom: 1px solid #ccc;
+}
+
+.toolbar h4 {
+    margin-bottom: 0.5rem;
+}
+
+/* =========================
+   SEARCH SECTION
+========================= */
+.search {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+
+    padding-right: 1rem;
+    margin-right: 1rem;
+    border-right: 1px solid #ddd;
+}
+
+.search-box {
+    display: flex;
+}
+
+.search form {
+    display: flex;
+}
+
+.search input {
+    width: 100%;
+    margin-right: 0.3rem;
+}
+
+/* =========================
+   FILTER SECTION
+========================= */
+.filter {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter select {
+    flex: 1;
+}
+
+/* =========================
+   TODO LIST & ITEMS
+========================= */
+.todo-list {
+    text-align: start;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* =========================
+   ACTION BUTTON GROUP
+========================= */
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    gap: 1rem;
+    padding: 1rem;
+
+    transition: 0.3s;
+}
+
+/* =========================
+   COMPLETED TODO STATE
+========================= */
+.done {
+    background-color: #3877a3;
+}
+
+/* =========================
+   ERROR MESSAGES
+========================= */
+.errors-message-crud {
+    margin-top: 0.5rem;
+
+    color: #cc4047;
+    font-size: 0.9rem;
 }
