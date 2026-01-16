@@ -1,4 +1,4 @@
-<x-layout-guest page-title="Login">
+<x-layout-guest pageTitle="Login">
     <x-auth-card>
         <form action="{{ route('login.store') }}" method="post" novalidate>
             @csrf

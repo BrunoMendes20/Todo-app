@@ -1,4 +1,4 @@
-<x-layout-guest page-title="Register">
+<x-layout-guest pageTitle="Cadastro">
     <x-auth-card>
         <form action="{{ route('users.store') }}" method="post" novalidate>
             @csrf
