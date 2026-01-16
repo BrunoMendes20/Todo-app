@@ -6,6 +6,25 @@ O projeto simula um sistema real, com autenticação e CRUD completo.
 
 ---
 
+## 📋 Pré-requisitos
+
+-   PHP 8+
+-   Composer
+-   MySQL
+-   Node.js (opcional, se usar Vite)
+
+## 📦 Instalação
+
+```bash
+
+-   git clone https://github.com/BrunoMendes20/Todo-app
+-   cd todo-app
+-   composer install
+-   cp .env.example .env
+-   php artisan key:generate
+-   php artisan migrate
+-   php artisan serve
+
 ## 🚀 Funcionalidades
 
 ### 🔐 Autenticação
@@ -132,3 +151,4 @@ app/
 👤 Autor
 
 Desenvolvido por Bruno Mendes
+```
